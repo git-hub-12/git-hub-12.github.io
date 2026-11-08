@@ -1,0 +1,93 @@
+<head>
+	<style>
+		body{
+			background-color: #0f172a;
+			text-align: center;
+			font-family:sans-serif;
+		}
+		h1{
+			color: #38bdf8;
+			text-shadow: 0 0 20px #38bdf8;
+		}
+		h2{
+			color: #ff007c;
+			text-shadow: 0 0 20px #ff007c;
+		}
+		img{
+			border-radius: 50%;
+			border: 4px solid white;
+			width:300px;
+			height:300px;
+			object-fit: cover;
+			box-shadow: 0 0 30px #38bdf8;
+		}
+		a{
+			text-decoration: none;
+		}
+		@keyframes LeftRightMove{
+			0%{transform: translateX(20px);}
+			100%{transform: translateX(-20px);}
+		}
+		a h1{
+			animation: LeftRightMove 1.5s ease-in-out infinite alternate;
+			color: #00ff00;
+			text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+		}
+		.fake-alert{
+			background-color: rgb(40, 10, 10);
+			color:red;
+			position: fixed;
+			left:50%;
+			top:50%;
+			border: 2px solid red;
+			box-shadow: 0 0 25px #ff3333;
+			padding: 10px 20px;
+			font-weight: bold;
+			border-radius: 5px;
+			transform: scale(0.1);
+			opacity: 0;
+			transition: all 0.5s;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>💋滚木💋</h1>
+	<h2>😜什么东西也么有😜</h2>
+	<img src="/static/head.png" onclick="hackerAttack()">
+
+	<a href="https://www.poki.com">
+		<h1>🔥不要点🔥</h1>
+	</a>
+
+	{% for m in messages %}
+		{{m.name}} - {{m.msg}}
+	{% endfor %}
+
+	<form action="/post" method="post">
+		<input name = "name" placeholder="你的名字">
+		<input name = "message" placeholder="说点什么吧">
+		<button type = "submit" >发送留言</button>
+	</form>
+	<script>
+		function hackerAttack(){
+			var n=100;
+			for(var i=1;i<=n;i++){
+				setTimeout(() => {
+					let box = document.createElement("div");
+					box.innerText = "😂系统错误！😂";
+					document.body.appendChild(box);
+					box.className="fake-alert";
+
+					box.offsetHeight;
+
+					box.style.left = (Math.random() * 100) + "%";
+					box.style.top = (Math.random() * 100) + "%";
+					box.style.opacity = "1";
+					box.style.transform = `scale(${Math.random()+0.5}) rotate(${Math.random() * 60 - 30}deg)`;
+				},i*100);
+			}
+			
+		}
+	</script>
+</body>
